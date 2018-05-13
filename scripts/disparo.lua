@@ -1,7 +1,6 @@
 
 -- Todo tipo de disparo deve ter trez paramentros, x,y,lado --
 disparo = {}
-disparo.cont=0
 require "scripts/inimigos"
 
 function disparo.load(dano)
@@ -42,10 +41,12 @@ function disparo.colideInimigo()
 	if(table.getn(disparo.listaDisparos) ~= 0 )  then
 		for i,auxd in ipairs(disparo.listaDisparos) do
 			for j, auxi in ipairs(inimigos.lista) do
-			if(auxd.x>=auxi.x and auxd.x<=auxi.x+auxi.width and auxd.y>=auxi.y and auxd.y<=auxi.y+auxi.width) then
+				if  auxd.x>auxi.x+5 or auxd.x+5 < auxi.x or  auxd.y>auxi.y+5 or auxd.y+5< auxi.y  then
+			
+			else 
 				table.remove(inimigos.lista,j)
 				table.remove(disparo.listaDisparos,i)
-				disparo.cont=disparo.cont+1
+			
 			end
 		end
 	end

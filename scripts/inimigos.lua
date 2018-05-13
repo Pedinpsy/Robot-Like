@@ -7,8 +7,8 @@ function inimigos.load()
 
 	inimigos.lista={}
 	inimigos.lista1={}
-inimigos.lista3 ={}
-inimigos.lista4 ={}
+	inimigos.lista3 ={}
+	inimigos.lista4 ={}
 
 	imgRivaloBob= love.graphics.newImage("img/spriteEnemy1.png")
 	imgRivaloBob2= love.graphics.newImage("img/spriteEnemy2.png")

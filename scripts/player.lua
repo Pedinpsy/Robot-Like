@@ -1,4 +1,4 @@
-
+		
 
 require "scripts/disparo"
 player={}

@@ -33,10 +33,6 @@ function love.draw()
 		love.graphics.draw(imgGameOver,400,300)
 
 	end
-	if disparo.cont==6 then
-		love.graphics.rectangle("fill",0,0,2000,2000)
-		love.graphics.setColor(255,255,255)
-		love.graphics.draw(imgContinua,0,0)
-	end
+
 
 end
