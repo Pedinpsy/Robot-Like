@@ -5,13 +5,12 @@ require "scripts/inimigos"
 
 function love.load()
 	imgGameOver= love.graphics.newImage("img/gameOver.png")
-	som=love.audio.newSource("sons/menu.mp3")
-	imgContinua = love.graphics.newImage("img/continua.png")
+	som=love.audio.newSource("sons/menu.mp3",'stream')
 	cenario.load()
 	telas.load()
 	player.load()
 	inimigos.load()
-	som:setVolume(0.5)
+	som:setVolume(0.0)
 end
 
 function love.update(dt)
