@@ -34,6 +34,12 @@ function disparo.update(dt)
 		end
 	end
 end
+function CheckCollision(x1,y1,w1,h1, x2,y2,w2,h2)
+  return x1 < x2+w2 and
+         x2 < x1+w1 and
+         y1 < y2+h2 and
+         y2 < y1+h1
+end
 
 
 function disparo.colideInimigo()
@@ -41,9 +47,8 @@ function disparo.colideInimigo()
 	if(table.getn(disparo.listaDisparos) ~= 0 )  then
 		for i,auxd in ipairs(disparo.listaDisparos) do
 			for j, auxi in ipairs(inimigos.lista) do
-				if  auxd.x>auxi.x+5 or auxd.x+5 < auxi.x or  auxd.y>auxi.y+5 or auxd.y+5< auxi.y  then
-			
-			else 
+				
+				if  CheckCollision(auxd.x,auxd.y,0,0,auxi.x,auxi.y,auxi.width,auxi.height)  then
 				table.remove(inimigos.lista,j)
 				table.remove(disparo.listaDisparos,i)
 			

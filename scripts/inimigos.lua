@@ -34,7 +34,7 @@ function inimigos.load()
 	inimigoAux.x = 150
 	inimigoAux.y = 100
 	inimigoAux.width=imgInimigo1:getWidth()/5
-	inimigoAux.height=imgInimigo1:getHeight()
+	inimigoAux.height=imgInimigo1:getHeight()+25
 	inimigoAux.anin = andar
 	inimigoAux.xIncremento = 2
 	inimigoAux.nome= "rivaldoBob"
@@ -44,7 +44,7 @@ function inimigos.load()
 	inimigoAux.x = 150
 	inimigoAux.y = 300
 	inimigoAux.width=imgInimigo1:getWidth()/5
-	inimigoAux.height=imgInimigo1:getHeight()
+	inimigoAux.height=imgInimigo1:getHeight()+25
 	inimigoAux.anin = andar
 	inimigoAux.xIncremento = 2
 	inimigoAux.nome= "rivaldoBob"
@@ -54,7 +54,7 @@ function inimigos.load()
 	inimigoAux.x = 150
 	inimigoAux.y = 300
 	inimigoAux.width=imgInimigo1:getWidth()/5
-	inimigoAux.height=imgInimigo1:getHeight()
+	inimigoAux.height=imgInimigo1:getHeight()+25
 	inimigoAux.anin = andar
 	inimigoAux.xIncremento = 2
 	inimigoAux.nome= "rivaldoBob"
@@ -69,7 +69,7 @@ function inimigos.load()
 	inimigoAux.x = 300
 	inimigoAux.y = 300
 	inimigoAux.width=imgInimigo1:getWidth()/5
-	inimigoAux.height=imgInimigo1:getHeight()
+	inimigoAux.height=imgInimigo1:getHeight()+25
 	inimigoAux.anin = andar
 	inimigoAux.xIncremento = 2
 	inimigoAux.nome= "rivaldoBob"
@@ -81,7 +81,7 @@ function inimigos.load()
 	inimigoAux.x = 150
 	inimigoAux.y = 300
 	inimigoAux.width=imgInimigo1:getWidth()/5
-	inimigoAux.height=imgInimigo1:getHeight()
+	inimigoAux.height=imgInimigo1:getHeight()+25
 	inimigoAux.anin = andar
 	inimigoAux.xIncremento = 2
 	inimigoAux.nome= "rivaldoBob"
@@ -94,7 +94,7 @@ function inimigos.load()
 	inimigoAux.x = 150
 	inimigoAux.y = 100
 	inimigoAux.width=imgInimigo1:getWidth()/5
-	inimigoAux.height=imgInimigo1:getHeight()
+	inimigoAux.height=imgInimigo1:getHeight()+25
 	inimigoAux.anin = andar
 	inimigoAux.xIncremento = 2
 	inimigoAux.nome= "rivaldoBob"
@@ -105,7 +105,7 @@ function inimigos.load()
 	inimigoAux.x = 150
 	inimigoAux.y = 200
 	inimigoAux.width=imgInimigo1:getWidth()/5
-	inimigoAux.height=imgInimigo1:getHeight()
+	inimigoAux.height=imgInimigo1:getHeight()+25
 	inimigoAux.anin = andar
 	inimigoAux.xIncremento = 2
 	inimigoAux.nome= "rivaldoBob"
@@ -116,7 +116,7 @@ function inimigos.load()
 	inimigoAux.x = 150
 	inimigoAux.y = 300
 	inimigoAux.width=imgInimigo1:getWidth()/5
-	inimigoAux.height=imgInimigo1:getHeight()
+	inimigoAux.height=imgInimigo1:getHeight()+25
 	inimigoAux.anin = andar
 	inimigoAux.xIncremento = 2
 	inimigoAux.nome= "rivaldoBob"
@@ -127,7 +127,7 @@ function inimigos.load()
 	inimigoAux.x = 150
 	inimigoAux.y = 400
 	inimigoAux.width=imgInimigo1:getWidth()/5
-	inimigoAux.height=imgInimigo1:getHeight()
+	inimigoAux.height=imgInimigo1:getHeight()+25
 	inimigoAux.anin = andar
 	inimigoAux.xIncremento = 2
 	inimigoAux.nome= "rivaldoBob"
@@ -159,14 +159,22 @@ for i, aux in pairs(inimigos.lista) do
 end
 function inimigos.drawNoJogo()
 
-if inimigos.lista then	
-for i, aux in pairs(inimigos.lista) do
-		if aux.nome=="rivaldoBob" then
-			aux.anin:draw(aux.img,aux.x,aux.y)
+	if inimigos.lista then	
+		for i, aux in pairs(inimigos.lista) do
+				if aux.nome=="rivaldoBob" then
+					aux.anin:draw(aux.img,aux.x,aux.y)
 
 			end
+		end
+		for i, aux in pairs(inimigos.lista) do
+				if aux.nome=="rivaldoBob" then
+					love.graphics.setColor(0, 0, 255, 0.5)
+					love.graphics.rectangle("fill", aux.x, aux.y, aux.width, aux.height)
+					love.graphics.setColor(255, 255, 255, 255)
+
+			end
+		end
 	end
-end
 
 	if telas.gameover then
 		 

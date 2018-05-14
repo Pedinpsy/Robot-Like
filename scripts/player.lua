@@ -6,8 +6,8 @@ player={}
 function player.load()
 	disparo.load(player.dano)
 
-	somSimples = love.audio.newSource("sons/simples.wav")
-	somMetralha = love.audio.newSource("sons/metralha.wav")
+	somSimples = love.audio.newSource("sons/simples.wav",'stream')
+	somMetralha = love.audio.newSource("sons/metralha.wav",'stream')
 
 
 	bobInverso=love. graphics.newImage("img/bobInverso.png")
