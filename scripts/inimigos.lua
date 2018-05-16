@@ -29,7 +29,6 @@ function inimigos.load()
 
 	atirar = anim8.newAnimation(gridInimigo1('1-5',1),0.1)
 	
-	
 	inimigoAux = {}
 	inimigoAux.x = 150
 	inimigoAux.y = 100

@@ -40,15 +40,13 @@ function CheckCollision(x1,y1,w1,h1, x2,y2,w2,h2)
          y1 < y2+h2 and
          y2 < y1+h1
 end
-
-
 function disparo.colideInimigo()
 	if inimigos.lista then
 	if(table.getn(disparo.listaDisparos) ~= 0 )  then
 		for i,auxd in ipairs(disparo.listaDisparos) do
 			for j, auxi in ipairs(inimigos.lista) do
 				
-				if  CheckCollision(auxd.x,auxd.y,0,0,auxi.x,auxi.y,auxi.width,auxi.height)  then
+				if  CheckCollision(auxd.x,auxd.y,auxd.width,auxd.height,auxi.x,auxi.y,auxi.width,auxi.height)  then
 				table.remove(inimigos.lista,j)
 				table.remove(disparo.listaDisparos,i)
 			
@@ -70,6 +68,8 @@ function disparo.tiroSimples(x,y,lado)
 		auxiliar.lado = lado
 		auxiliar.dano = disparo.dano
 		disparo.delay= 0.5
+		auxiliar.width = auxiliar.img:getWidth()
+		auxiliar.height = auxiliar.img:getHeight()
 		
 	
 		if (lado == "left") then
@@ -115,6 +115,9 @@ function disparo.metralhadora(x,y,lado)
 		auxiliar.y = y+(player.heightQuadro/2)-(auxiliar.img:getHeight()/2)
 		auxiliar.lado = lado
 		auxiliar.dano = disparo.dano
+		auxiliar.width = auxiliar.img:getWidth()
+		auxiliar.height = auxiliar.img:getHeight()
+		
 		if disparo.localTiro >= 5 then
 			disparo.localTiro = 1
 		end
