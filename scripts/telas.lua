@@ -1,4 +1,4 @@
-require "scripts/cenario"
+	require "scripts/cenario"
 --require "scripts/inimigos"
 telas={}
 

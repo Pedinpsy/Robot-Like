@@ -19,120 +19,14 @@ function inimigos.load()
 	andar = anim8.newAnimation(gridRivaldoBob('1-3',1),0.1)
 	andar2 = anim8.newAnimation(gridRivaldoBob2('1-3',1),0.1)
 
-
-
-	inimigos.draw=inimigos.nodraw
-	inimigos.update=inimigos.noUpdate
+	inimigos.draw = inimigos.nodraw
+	inimigos.update = inimigos.noUpdate
 
 	imgInimigo1 = love.graphics.newImage('img/inimigo1.png')
 	gridInimigo1= anim8.newGrid(imgInimigo1:getWidth()/5,imgInimigo1:getHeight(), imgInimigo1:getWidth(), imgInimigo1:getHeight())
 
-	atirar = anim8.newAnimation(gridInimigo1('1-5',1),0.1)
-	
-	inimigoAux = {}
-	inimigoAux.x = 150
-	inimigoAux.y = 100
-	inimigoAux.width=imgInimigo1:getWidth()/5
-	inimigoAux.height=imgInimigo1:getHeight()+25
-	inimigoAux.anin = andar
-	inimigoAux.xIncremento = 2
-	inimigoAux.nome= "rivaldoBob"
-	inimigoAux.img=imgRivaloBob
-	table.insert(inimigos.lista,inimigoAux)
-	inimigoAux = {} 
-	inimigoAux.x = 150
-	inimigoAux.y = 300
-	inimigoAux.width=imgInimigo1:getWidth()/5
-	inimigoAux.height=imgInimigo1:getHeight()+25
-	inimigoAux.anin = andar
-	inimigoAux.xIncremento = 2
-	inimigoAux.nome= "rivaldoBob"
-	inimigoAux.img=imgRivaloBob
-	table.insert(inimigos.lista,inimigoAux) 
-	inimigoAux = {} 
-	inimigoAux.x = 150
-	inimigoAux.y = 300
-	inimigoAux.width=imgInimigo1:getWidth()/5
-	inimigoAux.height=imgInimigo1:getHeight()+25
-	inimigoAux.anin = andar
-	inimigoAux.xIncremento = 2
-	inimigoAux.nome= "rivaldoBob"
-	inimigoAux.img=imgRivaloBob
-	inimigos.lista2={}
-	table.insert(inimigos.lista2,inimigoAux)
+	--atirar = anim8.newAnimation(gridInimigo1('1-5',1),0.1)
 
-
-
-
-	inimigoAux = {} 
-	inimigoAux.x = 300
-	inimigoAux.y = 300
-	inimigoAux.width=imgInimigo1:getWidth()/5
-	inimigoAux.height=imgInimigo1:getHeight()+25
-	inimigoAux.anin = andar
-	inimigoAux.xIncremento = 2
-	inimigoAux.nome= "rivaldoBob"
-	inimigoAux.img=imgRivaloBob
-	inimigos.lista2={}
-	table.insert(inimigos.lista3,inimigoAux)
-
-	inimigoAux = {} 
-	inimigoAux.x = 150
-	inimigoAux.y = 300
-	inimigoAux.width=imgInimigo1:getWidth()/5
-	inimigoAux.height=imgInimigo1:getHeight()+25
-	inimigoAux.anin = andar
-	inimigoAux.xIncremento = 2
-	inimigoAux.nome= "rivaldoBob"
-	inimigoAux.img=imgRivaloBob
-	inimigos.lista2={}
-	table.insert(inimigos.lista3,inimigoAux)
-
-
-	inimigoAux = {} 
-	inimigoAux.x = 150
-	inimigoAux.y = 100
-	inimigoAux.width=imgInimigo1:getWidth()/5
-	inimigoAux.height=imgInimigo1:getHeight()+25
-	inimigoAux.anin = andar
-	inimigoAux.xIncremento = 2
-	inimigoAux.nome= "rivaldoBob"
-	inimigoAux.img=imgRivaloBob
-	inimigos.lista2={}
-	table.insert(inimigos.lista4,inimigoAux)
-	inimigoAux = {} 
-	inimigoAux.x = 150
-	inimigoAux.y = 200
-	inimigoAux.width=imgInimigo1:getWidth()/5
-	inimigoAux.height=imgInimigo1:getHeight()+25
-	inimigoAux.anin = andar
-	inimigoAux.xIncremento = 2
-	inimigoAux.nome= "rivaldoBob"
-	inimigoAux.img=imgRivaloBob
-	inimigos.lista2={}
-	table.insert(inimigos.lista4,inimigoAux)
-	inimigoAux = {} 
-	inimigoAux.x = 150
-	inimigoAux.y = 300
-	inimigoAux.width=imgInimigo1:getWidth()/5
-	inimigoAux.height=imgInimigo1:getHeight()+25
-	inimigoAux.anin = andar
-	inimigoAux.xIncremento = 2
-	inimigoAux.nome= "rivaldoBob"
-	inimigoAux.img=imgRivaloBob
-	inimigos.lista2={}
-	table.insert(inimigos.lista4,inimigoAux)
-	inimigoAux = {} 
-	inimigoAux.x = 150
-	inimigoAux.y = 400
-	inimigoAux.width=imgInimigo1:getWidth()/5
-	inimigoAux.height=imgInimigo1:getHeight()+25
-	inimigoAux.anin = andar
-	inimigoAux.xIncremento = 2
-	inimigoAux.nome= "rivaldoBob"
-	inimigoAux.img=imgRivaloBob
-	inimigos.lista2={}
-	table.insert(inimigos.lista4,inimigoAux)
 
 
 end

@@ -67,54 +67,42 @@ function player.draw()
  end
 
  function player.desenhaNoJogo()
- 		  if(player.vida >=1) then
- 		  	love.graphics.draw(imgVida1,109,53)
- 		  end
- 		  if player.vida >=2 then
- 		  	love.graphics.draw(imgVida2,129,51)
- 		  end
- 		  if player.vida >=3 then
- 		  	love.graphics.draw(imgVida3,150,51)
- 		  end
-
-
-
-		if player.lado == "left" then
+	if(player.vida >=1) then
+		love.graphics.draw(imgVida1,109,53)
+	end
+	if player.vida >=2 then
+		love.graphics.draw(imgVida2,129,51)
+	end
+	if player.vida >=3 then
+		love.graphics.draw(imgVida3,150,51)
+	end
+	if player.lado == "left" then
+		andarEsquerda:draw(imgPlayers,player.x,player.y)
+		love.graphics.draw(player.arma,player.x+5,player.y+45)
+	end
+	if player.lado == "right" then
+		andarDireita:draw(bobInverso,player.x,player.y)
+		love.graphics.draw(player.arma,player.x+5,player.y+45)
+	end
+	if player.lado == "down" then
+		if player.ultimoLado == "left" then
 			andarEsquerda:draw(imgPlayers,player.x,player.y)
 			love.graphics.draw(player.arma,player.x+5,player.y+45)
-
-
-
-		end
-
-		if player.lado == "right" then
+		else
 			andarDireita:draw(bobInverso,player.x,player.y)
 			love.graphics.draw(player.arma,player.x+5,player.y+45)
 		end
+	end
 
-		if player.lado == "down" then
-			if player.ultimoLado == "left" then
-			andarEsquerda:draw(imgPlayers,player.x,player.y)
-			love.graphics.draw(player.arma,player.x+5,player.y+45)
-			else
-			andarDireita:draw(bobInverso,player.x,player.y)
-			love.graphics.draw(player.arma,player.x+5,player.y+45)
-			end
-		end
-
-		if player.lado == "up" then
-
-
-			if player.ultimoLado == "left" then
+	if player.lado == "up" then
+		if player.ultimoLado == "left" then
 			andarEsquerda:draw(imgPlayers,player.x,player.y)
 			love.graphics.draw(player.arma,player.x,player.y+45)
-			else
+		else
 			andarDireita:draw(bobInverso,player.x,player.y)
 			love.graphics.draw(player.arma,player.x+5,player.y+45)
-			end
 		end
-		
- 		--love.graphics.rectangle("fill", player.xHitbox,player.yHitbox,player.widthHitbox,player.heightHitbox)
+	end
 		
  end
 
@@ -192,7 +180,8 @@ function player.draw()
  						player.andar(player.lado,dt)		
  				end
  				if love.keyboard.isDown("up") and player.taNaTela("up") then
-	 					
+	 					player.ultimoLado="up"
+	 					player.arma=imgArma1u
 	 					player.andar(player.lado,dt)	
 	 					player.lado = "up"
 	 			end
@@ -207,7 +196,9 @@ function player.draw()
 	 			
 	
 	 			if love.keyboard.isDown("down") and player.taNaTela("down") then
+ 					player.ultimoLado="down"
  					player.lado = "down"
+ 					player.arma=imgArma1b
  					player.andar(player.lado,dt)
 	 				
 	 			end
@@ -215,12 +206,7 @@ function player.draw()
  		
  		if love.keyboard.isDown("space") then
  			
- 			if(player.lado == "down") then 
- 			player.arma = imgArma1b
- 			end
- 			if(player.lado == "up") then 
- 			player.arma = imgArma1u
- 			end
+ 		
  			disparo.atirar(player.x,player.y, player.lado)
  			if(disparo.atirar==disparo.tiroSimples) then
  				somSimples:play()
@@ -305,6 +291,7 @@ function player.colidir(x1,y1,w1,h1,x2,y2,w2,h2)
 end
 
 function player.andar(lado,dt)
+	flag = true
 	if (lado =="right") then
 		for i,aux in ipairs(cenario.listaElementos) do
 			if(player.yHitbox+player.heightHitbox >= aux.yHitbox and player.yHitbox+player.heightHitbox <= aux.yHitbox +aux.heightHitbox and
@@ -312,13 +299,17 @@ function player.andar(lado,dt)
 			 (player.xHitbox + player.widthHitbox) + player.velocidade >= aux.xHitbox and (player.xHitbox + player.widthHitbox)
 			  + player.velocidade <= aux.xHitbox+aux.widthHitbox  ) then
 			
+			flag = true
+ 			else
+ 			flag = false
+ 				
+
+			end
+		end
+		if flag then 
 				andarDireita:update(dt)
  				player.lado = "right"
  				player.ultimoLado = "right"
- 				if(aux.nome=="update") then
- 					disparo.atirar=disparo.metralhadora
- 					--table.remove(cenario.listaElementos,i)
- 				end
  			else
 
  				player.xHitbox=player.xHitbox+player.velocidade
@@ -326,70 +317,61 @@ function player.andar(lado,dt)
  				andarDireita:update(dt)
  				player.lado = "right"
  				player.ultimoLado="right"
- 				
-
-			end
-		end
+ 		end		
 	end 
 	if (lado =="left") then
 		for i,aux in ipairs(cenario.listaElementos) do
 			if(player.yHitbox+player.heightHitbox) >= aux.yHitbox and player.yHitbox+player.heightHitbox <= aux.yHitbox+aux.heightHitbox and
 
 			 (player.xHitbox - player.velocidade <= aux.xHitbox + aux.widthHitbox and (player.xHitbox)>= aux.xHitbox) then
-
-				andarEsquerda:update(dt)
- 				player.lado = "left"
- 				player.ultimoLado = "left"
- 				if(aux.nome=="update") then
- 					disparo.atirar=disparo.metralhadora
- 					--table.remove(cenario.listaElementos,i)
- 				end
-
+		
+			flag = true
  			else
-
- 				player.xHitbox=player.xHitbox-player.velocidade
- 				player.x = player.x - player.velocidade
- 				andarEsquerda:update(dt)
- 				player.lado = "left" 
- 				player.ultimoLado = "left"
- 				
-
-			end
+ 			flag = false
+ 			end	
+		end
+		if flag then
+			andarEsquerda:update(dt)
+ 			player.lado = "left"
+ 			player.ultimoLado = "left"
+ 		else
+ 			player.xHitbox=player.xHitbox-player.velocidade
+ 			player.x = player.x - player.velocidade
+			andarEsquerda:update(dt)
+			player.lado = "left" 
+ 			player.ultimoLado = "left"
 		end
 	end 
 	
 	if (lado =="up") then
 		for i,aux in ipairs(cenario.listaElementos) do
-
 			if  ((player.xHitbox+player.widthHitbox >= aux.xHitbox and player.xHitbox+player.widthHitbox <= aux.xHitbox+aux.widthHitbox or
 				player.xHitbox >= aux.xHitbox	and player.xHitbox<=aux.xHitbox+aux.widthHitbox)  and 
-
-				((player.yHitbox+(player.heightHitbox))-player.velocidade <= aux.yHitbox + aux.heightHitbox ) and (player.yHitbox+player.heightHitbox-player.velocidade)>=aux.yHitbox) then
-
-				if player.ultimoLado == "left" then
-					if(aux.nome=="update") then
- 					disparo.atirar=disparo.metralhadora
- 					--table.remove(cenario.listaElementos,i)
- 				end
-				andarEsquerda:update(dt)
-				else
-				andarDireita:update(dt)
-				end
-			
-
+				((player.yHitbox+(player.heightHitbox))-player.velocidade <= aux.yHitbox + aux.heightHitbox ) 
+				and (player.yHitbox+player.heightHitbox-player.velocidade)>=aux.yHitbox) then
+				flag = true
  			else
- 				if player.ultimoLado == "left" then
- 					
+ 				flag = false
+			end
+		end
+		if flag then
+			if player.ultimoLado == "left" then
 				andarEsquerda:update(dt)
-				else
+			else
 				andarDireita:update(dt)
-				end
+			end
+			
+		else
+			if player.ultimoLado == "left" then	
+				andarEsquerda:update(dt)
+			else
+				andarDireita:update(dt)
+			end
  				player.yHitbox=player.yHitbox-player.velocidade
  				player.y = player.y - player.velocidade
  				andarCima:update(dt)
  				player.lado = "up"
 
-			end
 		end
 	end 
 	if (lado =="down") then
@@ -397,42 +379,33 @@ function player.andar(lado,dt)
 
 			if  ((player.xHitbox+player.widthHitbox >= aux.xHitbox and player.xHitbox+player.widthHitbox <= aux.xHitbox+aux.widthHitbox or
 				player.xHitbox >= aux.xHitbox	and player.xHitbox<=aux.xHitbox+aux.widthHitbox)  and 
-
 				(player.yHitbox + player.heightHitbox) + player.velocidade >= aux.yHitbox and (player.yHitbox + player.heightHitbox)
-			  + player.velocidade <= aux.yHitbox+aux.heightHitbox  ) then
-
-				if player.ultimoLado == "left" then
-					if(aux.nome=="update") then
- 					disparo.atirar=disparo.metralhadora
- 				--	table.remove(cenario.listaElementos,i)
- 				end
-				andarEsquerda:update(dt)
-				else
-				andarDireita:update(dt)
-				end
- 				player.lado = "down"				
-
+				  + player.velocidade <= aux.yHitbox+aux.heightHitbox  ) then
+				flag = true
  			else
- 				if player.ultimoLado == "left" then
- 					
-				andarEsquerda:update(dt)
-				else
-				andarDireita:update(dt)
-				end
- 				player.yHitbox=player.yHitbox+player.velocidade
- 				player.y = player.y + player.velocidade
- 				andarBaixo:update(dt)
- 				player.lado = "down"
-
+ 				flag = false
+ 				
 			end
 		end
+		if flag then
+			if player.ultimoLado == "left" then
+				andarEsquerda:update(dt)
+			else
+				andarDireita:update(dt)
+			end
+ 				player.lado = "down"	
+ 		else 
+		if player.ultimoLado == "left" then
+			andarEsquerda:update(dt)
+		else
+			andarDireita:update(dt)
+		end
+ 			player.yHitbox=player.yHitbox+player.velocidade
+ 			player.y = player.y + player.velocidade
+ 			andarBaixo:update(dt)
+ 			player.lado = "down"
+
+ 		end
 	end 
-
-	
-
-
-
-
-
 end
 

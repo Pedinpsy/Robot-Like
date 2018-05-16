@@ -10,7 +10,7 @@ function love.load()
 	telas.load()
 	player.load()
 	inimigos.load()
-	som:setVolume(0.5)
+	som:setVolume(0.0)
 end
 
 function love.update(dt)
